@@ -25,7 +25,7 @@ int main()
 	
 	printf("\nGPIO config done.\r\n\r\n");
 	
-	sleep(1000);
+	usleep(1000);
 	
 	printf("\nULTRASONIC MEASURE.\r\n\r\n");
 	
