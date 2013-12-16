@@ -10,16 +10,17 @@
 #define US_TRIGGER_PIN	7
 #define US_ECHO_PIN	6
 
+
+static int triggered = 0;
 static inline void doTrigger();
+static struct timeval t1, t2;
+static double elapsedTime;
 
 void echoArrived();
 
 int main()
 {
-	struct timeval t1, t2;
-	double elapsedTime;
-	int triggered = 0;
-	
+
 	//init the wiringPi
 	wiringPiSetup();
 
@@ -37,13 +38,15 @@ int main()
 	printf("\nGPIO config done.\r\n\r\n");
 	
 	printf("\nULTRASONIC MEASURE.\r\n\r\n");
+	
+	wiringPiISR (US_ECHO_PIN,INT_EDGE_RISING ,  echoArrived);
+	
 	doTrigger();
 	gettimeofday(&t1, NULL);
-	wiringPiISR (US_ECHO_PIN,INT_EDGE_RISING ,  echoArrived);
 	
 	while(!triggered);
 	
-	return 0;
+	return 0;elapsedTime
 }
 
 static inline void doTrigger()
@@ -60,9 +63,10 @@ void echoArrived()
   elapsedTime = (double)(t2.tv_usec - t1.tv_usec);
 	
   printf("\nULTRASONIC MEASURE DONE.\r\n\r\n");
-  printf("\nTIME %f us\r\n", elapsedTime);
+  printf("\nTIME %f us\r\n", elapsedTime)int triggered = 0;;
 	
 
   fflush(stdout);
   triggered = 1;
+  
 }
