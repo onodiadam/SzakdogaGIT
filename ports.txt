@@ -1,0 +1,10 @@
+US sensor
+	Trigger #4
+	Echo 	#25
+
+DHT11		#17
+
+ADC	I2C 	
+
+RTC	I2C	68
+	
