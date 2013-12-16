@@ -30,13 +30,13 @@ int main()
 	printf("\nGPIO config done.\r\n\r\n");
 	
 	gettimeofday(&t1, NULL);
-	usleep(1000);
+	delayMicroseconds(10);
 	gettimeofday(&t2, NULL);
 	
-	elapsedTime = (t2.tv_usec - t1.tv_usec);
+	elapsedTime = (double)(t2.tv_usec - t1.tv_usec);
 	
 	printf("\nULTRASONIC MEASURE.\r\n\r\n");
-	printf("\nTIME %3d us\r\n", elapsedTime);
+	printf("\nTIME %f us\r\n", elapsedTime);
 	
 
 	fflush(stdout);
