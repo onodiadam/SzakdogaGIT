@@ -11,6 +11,7 @@
 
 int main()
 {
+	time_t a,b;
 	//init the wiringPi
 	wiringPiSetup();
 
@@ -25,9 +26,12 @@ int main()
 	
 	printf("\nGPIO config done.\r\n\r\n");
 	
+	a = clock();
 	usleep(1000);
+	b = clock();
 	
 	printf("\nULTRASONIC MEASURE.\r\n\r\n");
+	printf("\nTIME %i \r\n", b - a);
 	
 
 	fflush(stdout);
