@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
+#include <sys/time.h>
 
 #include <wiringPi.h>
 #include <wiringPiI2C.h>
@@ -11,7 +12,9 @@
 
 int main()
 {
-	time_t a,b;
+	timeval t1, t2;
+	double elapsedTime;
+	
 	//init the wiringPi
 	wiringPiSetup();
 
@@ -26,12 +29,14 @@ int main()
 	
 	printf("\nGPIO config done.\r\n\r\n");
 	
-	a = clock();
+	gettimeofday(&t1, NULL);
 	usleep(1000);
-	b = clock();
+	gettimeofday(&t2, NULL);
+	
+	elapsedTime = (t2.tv_usec - t1.tv_usec);
 	
 	printf("\nULTRASONIC MEASURE.\r\n\r\n");
-	printf("\nTIME %i \r\n", b - a);
+	printf("\nTIME %i us\r\n", elapsedTime);
 	
 
 	fflush(stdout);
