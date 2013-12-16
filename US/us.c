@@ -46,7 +46,7 @@ int main()
 	
 	while(!triggered);
 	
-	return 0;elapsedTime
+	return 0;
 }
 
 static inline void doTrigger()
@@ -63,7 +63,7 @@ void echoArrived()
   elapsedTime = (double)(t2.tv_usec - t1.tv_usec);
 	
   printf("\nULTRASONIC MEASURE DONE.\r\n\r\n");
-  printf("\nTIME %f us\r\n", elapsedTime)int triggered = 0;;
+  printf("\nTIME %f us\r\n", elapsedTime);
 	
 
   fflush(stdout);
