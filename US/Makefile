@@ -8,4 +8,4 @@ LDLIBS	= -lwiringPi -lpthread -lm
 
 us:	us.o
 	@echo [link]
-	@$(CC) -o $@ adc.o $(LDFLAGS) $(LDLIBS)
+	@$(CC) -o $@ us.o $(LDFLAGS) $(LDLIBS)
