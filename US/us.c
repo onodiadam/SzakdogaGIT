@@ -17,6 +17,7 @@ static struct timeval t1, t2;
 static double elapsedTime;
 
 void echoArrived();
+void waitEcho();
 
 int main()
 {
@@ -43,8 +44,12 @@ int main()
 	
 	doTrigger();
 	gettimeofday(&t1, NULL);
+	waitEcho();
+	gettimeofday(&t2, NULL);
 	
-	while(!triggered);
+	  elapsedTime = (double)(t2.tv_usec - t1.tv_usec);
+	 printf("\nULTRASONIC MEASURE DONE.\r\n\r\n");
+	printf("\nTIME %f us\r\n", elapsedTime);
 	
 	return 0;
 }
@@ -56,11 +61,16 @@ static inline void doTrigger()
 	digitalWrite(US_TRIGGER_PIN, 1);
 }
 
+void waitEcho()
+{
+    while(!digitalRead(US_ECHO_PIN));
+}
+
 void echoArrived()
 {
   gettimeofday(&t2, NULL);
   
-  elapsedTime = (double)(t2.tv_usec - t1.tv_usec);
+
 	
   printf("\nULTRASONIC MEASURE DONE.\r\n\r\n");
   printf("\nTIME %f us\r\n", elapsedTime);
