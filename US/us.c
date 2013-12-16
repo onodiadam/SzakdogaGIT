@@ -12,7 +12,7 @@
 
 int main()
 {
-	timeval t1, t2;
+	struct timeval t1, t2;
 	double elapsedTime;
 	
 	//init the wiringPi
@@ -36,7 +36,7 @@ int main()
 	elapsedTime = (t2.tv_usec - t1.tv_usec);
 	
 	printf("\nULTRASONIC MEASURE.\r\n\r\n");
-	printf("\nTIME %i us\r\n", elapsedTime);
+	printf("\nTIME %3d us\r\n", elapsedTime);
 	
 
 	fflush(stdout);
