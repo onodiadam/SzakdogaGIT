@@ -14,6 +14,6 @@ class DhtMain
 	{
 		Dht humtemp = new Dht();
 		long ht = humtemp.readDHT();
-		System.out.printf("Para x 16 + Homerseklet = ", ht);
+		System.out.println("Ht: " + ht + "\r\n");
 	}
 }
