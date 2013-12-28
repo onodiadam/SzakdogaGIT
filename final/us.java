@@ -14,6 +14,6 @@ class UsMain
 	{
 			Us obj = new Us();
 			int distance = obj.distance();
-			System.out.printf("Tavolsag: ",distance);
+			System.out.printf("Tavolsag: \r\n\r\n",distance);
 	}
 }
