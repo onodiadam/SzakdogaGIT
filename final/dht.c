@@ -7,7 +7,6 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include <stdint.h>
 #include <dirent.h>
 #include <fcntl.h>
 #include <assert.h>
@@ -25,16 +24,15 @@
 
 
 
-int32_t bits[250], data[100];
-int32_t bitidx = 0;
+int bits[250], data[100];
+int bitidx = 0;
 
 JNIEXPORT jlong JNICALL Java_Dht_readDHT(JNIEnv *env, jobject obj)
 
 {
-  int32_t counter = 0;
-  int32_t j	= 0;
-  int32_t laststate = HIGH;
-  uint64_t humadity_temperature;
+  int counter = 0;
+  int j	= 0;
+  int laststate = HIGH;
 
   wiringPiSetup();
   
@@ -52,6 +50,7 @@ JNIEXPORT jlong JNICALL Java_Dht_readDHT(JNIEnv *env, jobject obj)
  //set to input
   pinMode(DHTPIN, INPUT);
   pullUpDnControl(DHTPIN, PUD_UP);
+  
   data[0] = data[1] = data[2] = data[3] = data[4] = 0;
 
   // wait for pin to drop?
@@ -62,7 +61,7 @@ JNIEXPORT jlong JNICALL Java_Dht_readDHT(JNIEnv *env, jobject obj)
   }
 
   // read data!
-  for (int32_t i = 0; i < MAXTIMINGS; i++) 
+  for (int i = 0; i < MAXTIMINGS; i++) 
   {
     counter = 0;
     
@@ -88,10 +87,14 @@ JNIEXPORT jlong JNICALL Java_Dht_readDHT(JNIEnv *env, jobject obj)
       j++;
     }
   }
-	
+	long humadity_temperature;
      // yay!
-	humadity_temperature = (uint16_t)(data[0] << 16 )| (uint16_t) data[2];
+	humadity_temperature = data[0];
+	humadity_temperature = humadity_temperature << 16;
+	humadity_temperature |= data[2];
+	
 
+	
   	return humadity_temperature;
 }
 
