@@ -13,7 +13,7 @@
 
 static int triggered = 0;
 static inline void doTrigger();
-static struct timeval t1, t2;
+static struct timeval t1, t2, t3;
 static double elapsedTime;
 
 void echoArrived();
