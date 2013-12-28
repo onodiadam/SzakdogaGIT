@@ -28,38 +28,53 @@ int bits[250], data[100];
 int bitidx = 0;
 
 JNIEXPORT jlong JNICALL Java_Dht_readDHT(JNIEnv *env, jobject obj)
-{
-  int counter 	= 0;
-  int j			= 0;
 
-	wiringPiSetup();
+{
+  int counter = 0;
+  int j	= 0;
+  int laststate = HIGH;
+
+  wiringPiSetup();
+  
   // Set GPIO pin to output
-	pinMode(DHTPIN, OUTPUT);
-	//set to HIGH
-	digitalWrite(DHTPIN, HIGH);
+  pinMode(DHTPIN, OUTPUT);
+  
+  //set to HIGH
+  digitalWrite(DHTPIN, HIGH);
   usleep(500000);  // 500 ms
+  
   //set to LOW
   digitalWrite(DHTPIN, LOW);
   usleep(20000);
-  //set to input
+  
+ //set to input
   pinMode(DHTPIN, INPUT);
+  pullUpDnControl(DHTPIN, PUD_UP);
   
   data[0] = data[1] = data[2] = data[3] = data[4] = 0;
 
   // wait for pin to drop?
   //wait until level is HIGH
-  	while(digitalRead(DHTPIN) == HIGH);
+  while(digitalRead(DHTPIN) == HIGH)
+  {
+    usleep(10);
+  }
 
   // read data!
-  for (int i=0; i< MAXTIMINGS; i++) {
+  for (int i = 0; i < MAXTIMINGS; i++) 
+  {
     counter = 0;
+    
     //wait until level is HIGH
-    while(digitalRead(DHTPIN) == LOW) {
+    while(digitalRead(DHTPIN) == laststate) 
+    {
 	counter++;
 	//nanosleep(1);		// overclocking might change this?
         if (counter == 1000)
 	  break;
     }
+
+   laststate = digitalRead(DHTPIN);
     
     if (counter == 1000) break;
     bits[bitidx++] = counter;
@@ -78,8 +93,9 @@ JNIEXPORT jlong JNICALL Java_Dht_readDHT(JNIEnv *env, jobject obj)
 	humadity_temperature = humadity_temperature << 16;
 	humadity_temperature |= data[2];
 	
+
 	
-  return humadity_temperature;
+  	return humadity_temperature;
 }
 
  
