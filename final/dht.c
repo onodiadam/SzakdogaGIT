@@ -38,20 +38,27 @@ JNIEXPORT jlong JNICALL Java_Dht_readDHT(JNIEnv *env, jobject obj)
   
   // Set GPIO pin to output
   pinMode(DHTPIN, OUTPUT);
+  pinMode(DHTPIN, LOW);
+  
+  usleep(18000);  // 18 ms
   
   //set to HIGH
   digitalWrite(DHTPIN, HIGH);
-  usleep(500000);  // 500 ms
+  
+  usleep(40); //40us
   
   //set to LOW
   digitalWrite(DHTPIN, LOW);
-  usleep(20000);
-  
  //set to input
   pinMode(DHTPIN, INPUT);
-  pullUpDnControl(DHTPIN, PUD_UP);
+  pullUpDnControl(DHTPIN, PUD_DOWN);
   
   data[0] = data[1] = data[2] = data[3] = data[4] = 0;
+  
+  while(digitalRead(DHTPIN) == LOW)
+  {
+    usleep(10);
+  }
 
   // wait for pin to drop?
   //wait until level is HIGH
