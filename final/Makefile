@@ -13,3 +13,10 @@ dht:
 dhtJava:
 	@javac dht.java
 	@javah -jni Dht
+	
+us:
+	@$(CC) $(CFLAGS) $(LDFLAGS) $(LDLIBS) -o libUs.so -shared -fpic us.c
+	
+usJava:
+	@javac us.java
+	@javah -jni Us
