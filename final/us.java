@@ -8,7 +8,7 @@ class Us
 	
 }
 
-class Main
+class UsMain
 {
 	public static void main(String[] args)
 	{

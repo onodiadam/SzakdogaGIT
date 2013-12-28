@@ -8,7 +8,7 @@ class Dht
 	
 }
 
-class Main
+class DhtMain
 {
 	public static void main(String[] args)
 	{
