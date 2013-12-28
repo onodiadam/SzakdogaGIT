@@ -73,7 +73,7 @@ JNIEXPORT jlong JNICALL Java_Dht_readDHT(JNIEnv *env, jobject obj)
 	//nanosleep(1);		// overclocking might change this?
         if (counter == 1000)
 	  break;
-    }i
+    }
 
    laststate = digitalRead(DHTPIN);
     
