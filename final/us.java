@@ -1,3 +1,4 @@
+package Java;
 class Us
 {
 	public native int distance();
@@ -8,12 +9,19 @@ class Us
 	
 }
 
-class UsMain
+class UsMain implements IMeasure
 {
-	public static void main(String[] args)
+	public Object measure()
 	{
 			Us obj = new Us();
-			int distance = obj.distance();
-			System.out.println("Tavolsag: " + distance + "\r\n");
+			UsValue usv = new UsValue();
+			usv.distance = obj.distance();
+			return usv;
 	}
+}
+
+class UsValue
+{
+	int distance;
+	
 }
