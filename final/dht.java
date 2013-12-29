@@ -1,6 +1,6 @@
 class Dht
 {
-	public native long readDHT();
+	public native int read();
 	static 
 	{
 		System.loadLibrary("Dht");	
@@ -13,7 +13,7 @@ class DhtMain
 	public static void main(String[] args)
 	{
 		Dht humtemp = new Dht();
-		long ht = humtemp.readDHT();
+		int ht = humtemp.read();
 		System.out.println("H: " + (int)((ht & 0xFFFF0000) >> 16) + "T:" + (int)(ht & 0x0000FFFF) + "\r\n");
 	}
 }
