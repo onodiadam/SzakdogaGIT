@@ -2,14 +2,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
-#include <jni.h>
+#include <Java_DhtMain.h>
 
 #define MAX_TIME 185
 #define DHT11PIN 0
 int dht_val[5]={0,0,0,0,0};
 int failmeter = 0;
 
-JNIEXPORT jint JNICALL Java_Dht_read(JNIEnv *env, jobject obj)
+JNIEXPORT jint JNICALL Java_Java_DhtMain_read(JNIEnv *env, jobject obj)
 {
 if (wiringPiSetup() == -1)
 exit(1);

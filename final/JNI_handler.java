@@ -18,7 +18,7 @@ class Main
 		
 		int distance = usData.distance;
 		
-		System.out.println("Temp: " + temperature + "°C\t Hum: " + humadity + "%\t dist: " + distance + "cm");
+		System.out.println("Temp: " + temperature + "*C\t Hum: " + humadity + "%\t dist: " + distance + "cm");
 
 	}
 	
