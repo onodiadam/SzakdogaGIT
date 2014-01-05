@@ -24,10 +24,10 @@ while(failmeter < 10)
 		{
 			dht_val[i] = 0;
 		}
-
+		piHiPri(99);
 		pinMode(DHT11PIN,OUTPUT);
 		digitalWrite(DHT11PIN, LOW);
-		delay(18);
+		delay(100);
 		digitalWrite(DHT11PIN, HIGH);
 		delayMicroseconds(40);
 		pinMode(DHT11PIN, INPUT);

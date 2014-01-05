@@ -18,7 +18,9 @@ JAVALIBPATH = /root/work/GIT/SzakdogaGIT
 
 all:
 	@echo "--> Making IMeasure.class..."
-	@javac -d $(JAVAPATH) IMeasure.java 
+	@javac -d $(JAVAPATH) IMeasure.java
+	@echo "--> Making MySQLHandler.class"
+	@javac -d $(JAVAPATH) MySQLHandler.java
 	@echo "--> Making Dht.class, Dhtmain.class, DhtValue.class..."
 	@javac -d $(JAVAPATH) dht.java
 	@echo "--> Generating JNI header for libDht.so..."
