@@ -1,21 +1,16 @@
-package Java;
-
-class Dht 
-{
-	public native int read();
-	static 
-	{
-		System.loadLibrary("Dht");	
-	}
-	
-}
+		package Java;
+import Java.IMeasure;
 
 class DhtMain implements IMeasure
 {
+	static
+	{
+		System.loadLibrary("Dht");
+	}
+
 	public Object measure()
 	{
-		Dht humtemp = new Dht();
-		int ht = humtemp.read();
+		int ht = read();
 		
 		DhtValue dhtvalue = new DhtValue();
 		
@@ -23,6 +18,8 @@ class DhtMain implements IMeasure
 		dhtvalue.temp = (int)(ht & 0x0000FFFF);
 		return dhtvalue;
 	}
+
+	public native int read();
 }
 
 class DhtValue

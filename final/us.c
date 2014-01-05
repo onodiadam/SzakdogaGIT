@@ -7,6 +7,8 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <unistd.h>
+#include <jni.h>
+#include <Java_Us.h>
 
 #define TRIGGER 7
 #define ECHO 6
@@ -49,7 +51,7 @@ void init() {
 	delay(30);	
 }
 
-JNIEXPORT jint JNICALL Java_Us_distance(JNIEnv *env, jobject obj) {
+JNIEXPORT jint JNICALL Java_Java_Us_read(JNIEnv *env, jobject obj) {
 //int distance() {
 	init();
 	digitalWrite(TRIGGER, HIGH);
